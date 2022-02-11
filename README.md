@@ -92,22 +92,22 @@ The description of the structure and extra information about each _resource_ sto
 
 #### Projects
 
-| Field       | Data Type | Metadata                                                                    |
-| ----------- | --------- | --------------------------------------------------------------------------- |
-| id          | number    | do not provide it when creating projects, the database will generate it     |
-| name        | string    | required                                                                    |
-| description | string    | required                                                                    |
-| completed   | boolean   | not required, defaults to false when creating projects                      |
+| Field       | Data Type | Metadata                                                                |
+| ----------- | --------- | ----------------------------------------------------------------------- |
+| id          | number    | do not provide it when creating projects, the database will generate it |
+| name        | string    | required                                                                |
+| description | string    | required                                                                |
+| completed   | boolean   | not required, defaults to false when creating projects                  |
 
 #### Actions
 
-| Field       | Data Type | Metadata                                                                                         |
-| ----------- | --------- | ------------------------------------------------------------------------------------------------ |
-| id          | number    | do not provide it when creating actions, the database will generate it                           |
-| project_id  | number    | required, must be the id of an existing project                                                  |
-| description | string    | required, up to 128 characters long                                                              |
-| notes       | string    | required, no size limit. Used to record additional notes or requirements to complete the action  |
-| completed   | boolean   | not required, defaults to false when creating actions                                            |
+| Field       | Data Type | Metadata                                                                                        |
+| ----------- | --------- | ----------------------------------------------------------------------------------------------- |
+| id          | number    | do not provide it when creating actions, the database will generate it                          |
+| project_id  | number    | required, must be the id of an existing project                                                 |
+| description | string    | required, up to 128 characters long                                                             |
+| notes       | string    | required, no size limit. Used to record additional notes or requirements to complete the action |
+| completed   | boolean   | not required, defaults to false when creating actions                                           |
 
 ### Database Persistence Helpers
 
@@ -147,7 +147,21 @@ We have provided test data for all the resources.
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
+
+Node.js is asynchronous preventing one part of the code to slow down the everything else. Node.js also allows us to use javascript for the backend which is beneficial that the same language can be used for frontend and backend development. Some of the core features of express include middleware, routing, convenience helpers, and views. Middleware allows you to create reusable code for example an validateID rather than having to rewrite the code for each endpoint that uses that code. Routing allows us to create router handles which in turn helps break the application into more manageable parts. Convenience helpers are beneficial because they provide functionality out of the box including extension mehtods added to the request and response objects. View provide a way to dynamically see/render HTML on the server.
+
 1. Understand and explain the use of Middleware.
+
+Middleware is functions that extend software and is used to add feature to express. There are three main categories of express middleware. Built-in (such as server.use(express.json())), third party (such as morgan or CORS), and custom middleware (such as error handling middleware).
+
 1. The basic principles of the REST architectural style.
+
+REST (or Representational State Transfer) is a way of designing and distributing software. Some of the basic principles are that everything is a resource, each resource is accessible via a unique URL, communication is done over the stateless protcol and management of resources is done via HTTP methods.
+
 1. Understand and explain the use of Express Routers.
+
+Express routers refers to how an applications endpoints respond to requests from the client. Routing allows developers to create router handles and break the application into smaller parts.
+
 1. Describe tooling used to manually test the correctness of an API.
+
+Postman and HTTPie allows developers to manual test their API. Verifying that when you send a request to a certain endpoint the response is what you expect/want.

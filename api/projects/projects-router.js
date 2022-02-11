@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
   projectsModel
     .get()
     .then((projects) => {
-      console.log(projects);
       res.json(projects);
     })
     .catch(() => {
@@ -66,8 +65,7 @@ router.delete('/:id', validateProjectId, async (req, res) => {
     .then(() => {
       res.json(projectToDelete);
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
       res.status(500).json({ message: 'Error deleting the project' });
     });
 });

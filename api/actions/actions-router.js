@@ -67,8 +67,7 @@ router.delete('/:id', validateActionId, async (req, res) => {
     .then(() => {
       res.json(actionToDelete);
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
       res.status(500).json({ message: 'Error deleting the action' });
     });
 });
