@@ -41,4 +41,18 @@ router.post('/', validateAction, (req, res) => {
     });
 });
 
+router.delete('/:id', validateActionId, async (req, res) => {
+  const { id } = req.params;
+  const actionToDelete = await actionsModel.get(id);
+  actionsModel
+    .remove(id)
+    .then(() => {
+      res.json(actionToDelete);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: 'Error deleting the action' });
+    });
+});
+
 module.exports = router;
