@@ -1,7 +1,11 @@
 // Write your "projects" router here!
 const express = require('express');
 const projectsModel = require('./projects-model');
-const { validateProjectId, validateProject } = require('./projects-middleware');
+const {
+  validateProjectId,
+  validateProject,
+  validateUpdatedProject,
+} = require('./projects-middleware');
 
 const router = express.Router();
 
@@ -36,6 +40,20 @@ router.post('/', validateProject, (req, res) => {
     .catch(() => {
       res.status(500).json({
         message: 'There was an error while saving the project to the database',
+      });
+    });
+});
+
+router.put('/:id', validateProjectId, validateUpdatedProject, (req, res) => {
+  const { id } = req.params;
+  projectsModel
+    .update(id, req.body)
+    .then((updatedProject) => {
+      res.json(updatedProject);
+    })
+    .catch(() => {
+      res.status(500).json({
+        message: 'There was an error while saving the updated project',
       });
     });
 });

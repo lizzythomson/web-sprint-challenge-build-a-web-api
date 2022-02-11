@@ -3,7 +3,11 @@ const express = require('express');
 
 const actionsModel = require('./actions-model');
 
-const { validateActionId, validateAction } = require('./actions-middlware');
+const {
+  validateActionId,
+  validateAction,
+  validateUpdatedAction,
+} = require('./actions-middlware');
 
 const router = express.Router();
 
@@ -37,6 +41,20 @@ router.post('/', validateAction, (req, res) => {
     .catch(() => {
       res.status(500).json({
         message: 'There was an error while saving the action to the database',
+      });
+    });
+});
+
+router.put('/:id', validateActionId, validateUpdatedAction, (req, res) => {
+  const { id } = req.params;
+  actionsModel
+    .update(id, req.body)
+    .then((updatedAction) => {
+      res.json(updatedAction);
+    })
+    .catch(() => {
+      res.status(500).json({
+        message: 'There was an error while saving the updated action',
       });
     });
 });
